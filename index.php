@@ -33,7 +33,7 @@ include("views/blades/header.php");
             while($exibe = mysqli_fetch_array($query)){
             ?>
         <tr>
-            <td><img src="files/imgs/<?php echo $exibe[9] ?>" width="200"></td>
+            <td><img src="files/imgs/<?php echo $exibe[10] ?>" width="200"></td>
             <td width="200" height="200"><?php echo $exibe[5] ?></td>
             <td><a href="page.php?idb=<?php echo $exibe[0]?>"><?php echo substr($exibe[6],0,50)."..." ?></a></td>
             <td><a class="btn btn-primary d-flex justify-content-center" href="views/cadastroAtualiza.php?ida=<?php echo $exibe[0]?>">Editar</a></td>
