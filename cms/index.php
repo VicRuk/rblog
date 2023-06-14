@@ -2,7 +2,7 @@
 include("../models/conexao.php");
 include("../views/blades/header2.php");
 ?>
-<div class="container p-5 mt-5 mb-5 rounded bg-white">
+<div class="container p-5 mt-5 mb-5 rounded bg-white justify-content-center" id="login">
     <div class="row">
         <div class="col-lg-10 offset-lg-1">
             <div class="card">

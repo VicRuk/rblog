@@ -3,7 +3,7 @@ include("../models/conexao.php");
 include("blades/header2.php");
 ?>
 
-<div class="container border rounded m-5 pt-3 ps-3 pb-3 pe-3 bg-white" id="blog">
+<div class="container border rounded mt-5 mb-5 pt-3 ps-3 pb-3 pe-3 bg-white" id="blog">
     <form name="upload" enctype="multipart/form-data" action="../controllers/adicionarBlog.php" method="post">
         
         <label class="form-label lbl-input mt-2">Escolher Usuário:</label>

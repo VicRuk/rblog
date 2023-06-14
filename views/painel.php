@@ -9,13 +9,14 @@ include("../models/conexao.php");
 include("blades/header2.php");
 ?>
 
-<div class="container border rounded m-5 pt-3 ps-3 pb-3 pe-3 bg-white" id="blog">
+<div class="container border rounded mt-5 mb-5 pt-3 ps-3 pb-3 pe-3 bg-white" id="blog">
     <h1 class="fw-bold">Painel</h1>
     <label class="form-label lbl-input mt-4 fs-5">Bem Vindo <?php echo $_SESSION["usuario"]?></label>
     
     <hr class="border border-dark border-2 opacity-75">
     <form name="upload" enctype="multipart/form-data" action="../controllers/adicionarBlog.php" method="post">
-        <input class="hidden" type="text" value="<?php $exibe[1]?>">
+        <input type="hidden" class="hidden" name="UsuarioNome" value="<?php echo $_SESSION["usuario"]?>">
+
         <label class="form-label">Título</label><br>
         <input class="form-control" type="text" name="tituloBlog"><br>
 
