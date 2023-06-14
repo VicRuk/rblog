@@ -4,10 +4,11 @@ include("../models/conexao.php");
 
 $varBlogTitulo = $_POST["tituloBlog"];
 $varBlogCorpo = $_POST["sobreBlog"];
-$PostagemUsuarioCodigo = $_POST["UsuarioCodigo"];
+$PostagemUsuarioCodigo = $_POST["usuarioCodigo"];
 $diretorio = "../files/imgs/blog";
 
 $arquivos = isset($_FILES['arquivo']) ? $_FILES['arquivo'] : FALSE;
+
 mysqli_query($conexao, "INSERT INTO bloginfo (bloginfo_titulo, bloginfo_corpo) VALUES ('$varBlogTitulo', '$varBlogCorpo')");
 $id_noticiaInfo_last = mysqli_insert_id($conexao);
 

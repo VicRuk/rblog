@@ -1,9 +1,17 @@
+html, body{
+    font-family: 'Montserrat', sans-serif;
+}
+p{
+    font-size: 0.9rem;
+}
 #blog{
     min-height: 90vh;
 }
 #login{
     min-height: 70vh;
 }
+
+
 #footer{
     position: relative;
     background-color: #000;  
