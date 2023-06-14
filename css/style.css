@@ -1,0 +1,26 @@
+#blog{
+    height: 90vh;
+}
+#footer{
+    position: relative;
+    background-color: #000;  
+    bottom: 0;
+}
+#redes{
+    margin: 10px 0;
+    flex-wrap: wrap;
+    padding-inline-start: 0px !important;
+}
+#redes li a{
+    font-size: 2em;
+    color: #FFF;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+}
+#redes li a:hover{
+    transform: translateY(-10px);
+}
+#redes li{
+    list-style: none;
+}

@@ -1,52 +1,42 @@
 <?php
+echo "<html lang='pt-br'>";
 include("../models/conexao.php");
 
 $varBlogTitulo = $_POST["tituloBlog"];
 $varBlogCorpo = $_POST["sobreBlog"];
 $PostagemUsuarioCodigo = $_POST["UsuarioCodigo"];
-$diretorio = "../files/imgs";
+$diretorio = "../files/imgs/blog";
 
+$arquivos = isset($_FILES['arquivo']) ? $_FILES['arquivo'] : FALSE;
+mysqli_query($conexao, "INSERT INTO bloginfo (bloginfo_titulo, bloginfo_corpo) VALUES ('$varBlogTitulo', '$varBlogCorpo')");
+$id_noticiaInfo_last = mysqli_insert_id($conexao);
 
-$arquivo = isset($_FILES['arquivo']) ? $_FILES['arquivo'] : FALSE;
+for ($i = 0; $i < count($arquivos['name']); $i++) {
+    $varBlogImg = $arquivos['name'][$i];
+    $temp = $arquivos['tmp_name'][$i];
+    $tipo = $arquivos['type'][$i];
+    $erro = $arquivos['error'][$i];
+    $extensao = pathinfo($varBlogImg, PATHINFO_EXTENSION);
 
-for ($k = 0; $k < count($arquivo['name']); $k++) {
-	$destino = $diretorio . "/" . $arquivo['name'][$k];
+    if ($extensao == 'png') {
+        $varBlogImgRandom = uniqid() . "." . $extensao;
+        $destino = $diretorio . "/" . $varBlogImgRandom;
 
-	$extension = pathinfo($destino, PATHINFO_EXTENSION);
-	$varImgName = $arquivo['name'][$k];
-
-	$varImgNameRandom = uniqid(). "." . $extension;
-
-	if($extension == "png"){
-
-	if (move_uploaded_file($arquivo['tmp_name'][$k], $diretorio . "/" . $varImgNameRandom)) {
-
-		mysqli_query($conexao, "INSERT INTO blogimg(blogimg_nome, blogimg_nomerandom) VALUES ('$varImgName', '$varImgNameRandom')");
-		$id_imgTable_last = mysqli_insert_id($conexao);
-
-		mysqli_query($conexao, "INSERT INTO bloginfo (bloginfo_titulo, bloginfo_corpo) VALUES ('$varBlogTitulo', '$varBlogCorpo')");
-		$id_noticiaInfo_last = mysqli_insert_id($conexao);
-
-		mysqli_query($conexao, "INSERT INTO blog (blog_bloginfo_codigo, blog_blogimg_codigo, blog_usuario_codigo) VALUES ('$id_noticiaInfo_last', '$id_imgTable_last', '$PostagemUsuarioCodigo')");
-	} else {
-		echo "Falha ao enviar o arquivo.";
-		}
-	} else {
-		echo "Arquivo não é compatível com o tipo 'PNG' ";
+        if (move_uploaded_file($temp, $destino)) {
+            mysqli_query($conexao, "INSERT INTO blogimg(blogimg_nome, blogimg_nomerandom, fk_codigo_img) VALUES ('$varBlogImg', '$varBlogImgRandom', '$id_noticiaInfo_last')");
+            $id_imgTable_last = mysqli_insert_id($conexao);
+        }
+    }
+	else{
+		die("<script> alert('Aceita apenas PNG.'); window.location='../index.php'; </script>");
 	}
-
-	
-
-	
-
-
-	//mysqli_query($conexao, "INSERT INTO noticias (noticiaImgId, noticiaInfoId, noticiaUsuarioId) 
-	//VALUES (, '' , '$PostagemUsuarioCodigo');");
 }
-//mysqli_query($conexao, "INSERT INTO blogimg (blogimg_nome, blogimg_nomerandom) VALUES ('$varImgName', '$varImgNameRandom')");
-//INSERT INTO bloginfo (bloginfo_titulo, bloginfo_corpo) VALUES ('$varBlogTitulo', '$varBlogCorpo');
-					
-
+if(mysqli_query($conexao, "INSERT INTO blog (blog_bloginfo_codigo, blog_blogimg_codigo, blog_usuario_codigo) VALUES ('$id_noticiaInfo_last', '$id_imgTable_last', '$PostagemUsuarioCodigo')")){
+	die("<script> alert('Blog criado com sucesso!'); window.location='../index.php'; </script>");
+}
+else{
+	die("<script> alert('Falha ao criar o blog.'); window.location='../index.php'; </script>");
+}
+mysqli_close($conexao);
 header("location:../index.php");
 ?>
-
