@@ -2,46 +2,71 @@
 include("models/conexao.php");
 include("views/blades/header.php");
 ?>
-<div class="container border rounded mb-5 mt-5 pt-3 ps-3 pb-3 pe-3 bg-white" id="blog">
-    <a class="btn btn-success" href="views/criarBlog.php">Cadastrar</a><br><hr>
 
-    <form action="index.php" method="post">
-        <input class="form-control" type="text" name="buscar" placeholder="Digite a busca" value="%">
-    </form>
-    <hr>
-    <?php
-        if(empty($_POST["buscar"])){
-            echo "Nenhum resultado";
-        } else{  
-            $varBuscar = $_POST["buscar"];
-    ?>
-
-
-    <hr>
-    <table class="table table-bordered table-striped table-hover justify-content-center">
-        <tr>
-            <td><b>Imagem</b></td>
-            <td><b>Título</b></td>
-            <td><b>Sobre</b></td>
-            <td><b>Editar</b></td>
-            <td><b>Excluir</b></td>
-        </tr>
-
+<div class="container-fluid border rounded mt-5 mb-5 bg-white col-12 px-0" id="blog" style="background-color:#FF0000">
+    <div class="container-fluid row px-0 justify-content-center">
         <?php
-            $query = mysqli_query($conexao, "SELECT * FROM blog INNER JOIN bloginfo ON blog_bloginfo_codigo = bloginfo_codigo INNER JOIN blogimg ON blog_blogimg_codigo = blogimg_codigo ORDER BY blog_codigo desc");
-            while($exibe = mysqli_fetch_array($query)){
-            ?>
+        $query = mysqli_query($conexao, "SELECT * FROM blog INNER JOIN bloginfo ON blog_bloginfo_codigo = bloginfo_codigo INNER JOIN blogimg ON blog_blogimg_codigo = blogimg_codigo ORDER BY blog_codigo desc limit 1;");
+        while($exibe = mysqli_fetch_array($query)){
+        ?>
+        <div class="col-6 mb-2 border rounded shadow-sm h-md-250" style="width">
+            <div class="row align-items-center justify-content-center px-0">
+                <div class="card col-md-6 flex-md-row mb-4 align-self-center align-items-center justify-content-center">
+                    <img src="files/imgs/blog/<?php echo $exibe[10] ?>" width="200">
+                </div>
+                <div class="col-md-6">
+                    <div class="column">
+                        <div class="">
+                             <a href="page.php?idb=<?php echo $exibe[0]?>"><?php echo $exibe[5] ?></a>
+                        </div>
+                        <div class="">
+                            <a href="page.php?idb=<?php echo $exibe[0]?>"><?php echo substr($exibe[6],0,50)."..." ?></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+
+        <div class="col-5 mb-2 border rounded shadow-sm h-md-250" style="background-color: #FF9990;">
+        <?php
+        $query = mysqli_query($conexao, "SELECT * FROM blog INNER JOIN bloginfo ON blog_bloginfo_codigo = bloginfo_codigo INNER JOIN blogimg ON blog_blogimg_codigo = blogimg_codigo ORDER BY blog_codigo desc limit 1,3;");
+        while($exibe = mysqli_fetch_array($query)){
+        ?>
+            <div class="row align-items-center justify-content-center px-0">
+                <div class="card col-md-6 flex-md-row mb-4 align-self-center align-items-center justify-content-center">
+                    <img src="files/imgs/blog/<?php echo $exibe[10] ?>" width="100">
+                </div>
+                <div class=" card col-md-6">
+                    <div class="column">
+                        <div class="">
+                             <a href="page.php?idb=<?php echo $exibe[0]?>"><?php echo $exibe[5] ?></a>
+                        </div>
+                        <div class="">
+                            <a href="page.php?idb=<?php echo $exibe[0]?>"><?php echo substr($exibe[6],0,50)."..." ?></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+        
+    </div>
+</div>
+    <!--<table class="table table-bordered table-striped table-hover">
+
+        
+            
         <tr>
             <td><img src="files/imgs/blog/<?php echo $exibe[10] ?>" width="200"></td>
             <td width="200" height="200"><?php echo $exibe[5] ?></td>
             <td><a href="page.php?idb=<?php echo $exibe[0]?>"><?php echo substr($exibe[6],0,50)."..." ?></a></td>
-            <td><a class="btn btn-primary d-flex justify-content-center" href="views/editarBlog.php?ida=<?php echo $exibe[0]?>">Editar</a></td>
-            <td><a class="btn btn-danger d-flex justify-content-center" href="controllers/deletarAluno.php?ida=<?php echo $exibe[0]?>">Excluir</a></td>
         </tr>
-        <?php } ?>
+        
     </table>
-    <?php } ?>
-</div>
+    -->
+
+
 <?php
 
 include("views/blades/footer.php");
