@@ -29,15 +29,15 @@ for ($i = 0; $i < count($arquivos['name']); $i++) {
         }
     }
 	else{
-		die("<script> alert('Aceita apenas PNG.'); window.location='../index.php'; </script>");
+		die("<script> alert('Aceita apenas PNG.'); window.location='../views/painel.php'; </script>");
 	}
 }
 if(mysqli_query($conexao, "INSERT INTO blog (blog_bloginfo_codigo, blog_blogimg_codigo, blog_usuario_codigo) VALUES ('$id_noticiaInfo_last', '$id_imgTable_last', '$PostagemUsuarioCodigo')")){
-	die("<script> alert('Blog criado com sucesso!'); window.location='../index.php'; </script>");
+	die("<script> alert('Blog criado com sucesso!'); window.location='../views/painel.php'; </script>");
 }
 else{
-	die("<script> alert('Falha ao criar o blog.'); window.location='../index.php'; </script>");
+	die("<script> alert('Falha ao criar o blog.'); window.location='../views/painel.php'; </script>");
 }
 mysqli_close($conexao);
-header("location:../index.php");
+header("location:painel.php");
 ?>
