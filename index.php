@@ -2,7 +2,7 @@
 include("models/conexao.php");
 include("views/blades/header.php");
 ?>
-<div class="container border rounded m-5 pt-3 ps-3 pb-3 pe-3 bg-white" id="blog">
+<div class="container border rounded mb-5 mt-5 pt-3 ps-3 pb-3 pe-3 bg-white" id="blog">
     <a class="btn btn-success" href="views/criarBlog.php">Cadastrar</a><br><hr>
 
     <form action="index.php" method="post">
@@ -18,7 +18,7 @@ include("views/blades/header.php");
 
 
     <hr>
-    <table class="table table-bordered table-striped table-hover">
+    <table class="table table-bordered table-striped table-hover justify-content-center">
         <tr>
             <td><b>Imagem</b></td>
             <td><b>Título</b></td>

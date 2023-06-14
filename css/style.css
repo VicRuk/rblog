@@ -1,5 +1,5 @@
 #blog{
-    height: 90vh;
+    min-height: 90vh;
 }
 #footer{
     position: relative;
