@@ -5,6 +5,9 @@ include("views/blades/header.php");
 <div class="container border rounded m-5 pt-3 ps-3 pb-3 pe-3 bg-white" id="blog">
     <a class="btn btn-success" href="views/criarBlog.php">Cadastrar</a><br><hr>
 
+    <form action="index.php" method="post">
+        <input class="form-control" type="text" name="buscar" placeholder="Digite a busca" value="%">
+    </form>
     <hr>
     <?php
         if(empty($_POST["buscar"])){
