@@ -2,20 +2,7 @@ DROP DATABASE IF EXISTS `rblog`;
 CREATE DATABASE IF NOT EXISTS `rblog` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `rblog`;
 
--- Copiando estrutura para tabela rblog.blog
-CREATE TABLE IF NOT EXISTS `blog` (
-  `blog_codigo` int(11) NOT NULL AUTO_INCREMENT,
-  `blog_bloginfo_codigo` int(11) NOT NULL DEFAULT '0',
-  `blog_blogimg_codigo` int(11) NOT NULL DEFAULT '0',
-  `blog_usuario_codigo` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`blog_codigo`),
-  KEY `blog_bloginfo_codigo` (`blog_bloginfo_codigo`),
-  KEY `blog_blogimg_codigo` (`blog_blogimg_codigo`),
-  KEY `blog_usuario_codigo` (`blog_usuario_codigo`),
-  CONSTRAINT `FK_blog_blogimg` FOREIGN KEY (`blog_blogimg_codigo`) REFERENCES `blogimg` (`blogimg_codigo`),
-  CONSTRAINT `FK_blog_bloginfo` FOREIGN KEY (`blog_bloginfo_codigo`) REFERENCES `bloginfo` (`bloginfo_codigo`),
-  CONSTRAINT `FK_blog_usuario` FOREIGN KEY (`blog_usuario_codigo`) REFERENCES `usuario` (`usuario_codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela rblog.bloginfo
@@ -45,4 +32,21 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `usuario_email` varchar(250) DEFAULT NULL,
   `usuario_senha` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`usuario_codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=LATIN1;
+
+-- Copiando estrutura para tabela rblog.blog
+CREATE TABLE IF NOT EXISTS `blog` (
+  `blog_codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `blog_bloginfo_codigo` int(11) NOT NULL DEFAULT '0',
+  `blog_blogimg_codigo` int(11) NOT NULL DEFAULT '0',
+  `blog_usuario_codigo` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`blog_codigo`),
+  KEY `blog_bloginfo_codigo` (`blog_bloginfo_codigo`),
+  KEY `blog_blogimg_codigo` (`blog_blogimg_codigo`),
+  KEY `blog_usuario_codigo` (`blog_usuario_codigo`),
+  CONSTRAINT `FK_blog_blogimg` FOREIGN KEY (`blog_blogimg_codigo`) REFERENCES `blogimg` (`blogimg_codigo`),
+  CONSTRAINT `FK_blog_bloginfo` FOREIGN KEY (`blog_bloginfo_codigo`) REFERENCES `bloginfo` (`bloginfo_codigo`),
+  CONSTRAINT `FK_blog_usuario` FOREIGN KEY (`blog_usuario_codigo`) REFERENCES `usuario` (`usuario_codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=LATIN1;
+SELECT * FROM blog INNER JOIN bloginfo ON blog_bloginfo_codigo = bloginfo_codigo INNER JOIN blogimg ON blog_blogimg_codigo = blogimg_codigo ORDER BY blog_codigo desc limit 1;
+SELECT * FROM blog INNER JOIN bloginfo ON blog_bloginfo_codigo = bloginfo_codigo INNER JOIN blogimg ON blog_blogimg_codigo = blogimg_codigo ORDER BY blog_codigo desc LIMIT 3-1;      
