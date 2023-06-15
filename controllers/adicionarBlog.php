@@ -20,7 +20,7 @@ for ($i = 0; $i < count($arquivos['name']); $i++) {
     $extensao = pathinfo($varBlogImg, PATHINFO_EXTENSION);
 
     if ($extensao == 'png') {
-        $varBlogImgRandom = uniqid() . "." . $extensao;
+        $varBlogImgRandom = md5(uniqid()) . "." . $extensao;
         $destino = $diretorio . "/" . $varBlogImgRandom;
 
         if (move_uploaded_file($temp, $destino)) {
