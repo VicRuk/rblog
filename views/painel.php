@@ -4,7 +4,7 @@ if(empty($_SESSION))
 {
 print "<script>location.href='../cms/index.php';</script>";
 }
-
+$usuariocodigo = $_SESSION["usuarioCodigo"];
 include("../models/conexao.php");
 include("blades/header2.php");
 ?>
@@ -42,7 +42,7 @@ include("blades/header2.php");
         </tr>
 
         <?php
-            $query = mysqli_query($conexao, "SELECT * FROM blog INNER JOIN bloginfo ON blog_bloginfo_codigo = bloginfo_codigo INNER JOIN blogimg ON blog_blogimg_codigo = blogimg_codigo ORDER BY blog_codigo desc");
+            $query = mysqli_query($conexao, "SELECT * FROM blog INNER JOIN bloginfo ON blog_bloginfo_codigo = bloginfo_codigo INNER JOIN blogimg ON blog_blogimg_codigo = blogimg_codigo WHERE blog_usuario_codigo = $usuariocodigo ORDER BY blog_codigo desc");
             while($exibe = mysqli_fetch_array($query)){
             ?>
         <tr>

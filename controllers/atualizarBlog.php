@@ -6,30 +6,16 @@ $BlogInfoCodigo = $_POST["infoCodigo"];
 $BlogTitulo = $_POST["tituloBlog"];
 $BlogCorpo = $_POST["sobreBlog"];
 
-if(mysqli_query($conexao, "UPDATE bloginfo SET bloginfo_titulo = '$BlogTitulo', bloginfo_corpo = '$BlogCorpo' WHERE bloginfo_codigo = '$BlogInfoCodigo'"))
-{
-    die("<script> alert('Blog criado com sucesso!'); window.location='../views/painel.php'; </script>");
-}
-
-header("location:../views/painel.php");
-
-
-?>
-<?php
-/*echo "<html lang='pt-br'>";
-include("../models/conexao.php");
-
-$varBlogTitulo = $_POST["tituloBlog"];
-$varBlogCorpo = $_POST["sobreBlog"];
-$PostagemUsuarioCodigo = $_POST["usuarioCodigo"];
 $diretorio = "../files/imgs/blog";
-
 $arquivos = isset($_FILES['arquivo']) ? $_FILES['arquivo'] : FALSE;
 
-mysqli_query($conexao, "INSERT INTO bloginfo (bloginfo_titulo, bloginfo_corpo) VALUES ('$varBlogTitulo', '$varBlogCorpo')");
+mysqli_query($conexao, "UPDATE bloginfo SET bloginfo_titulo = '$BlogTitulo', bloginfo_corpo = '$BlogCorpo' WHERE bloginfo_codigo = '$BlogInfoCodigo'");
 $id_noticiaInfo_last = mysqli_insert_id($conexao);
 
+echo count($arquivos['name']);
+
 for ($i = 0; $i < count($arquivos['name']); $i++) {
+    $codigoImg = $_POST["codigoImagem"];
     $varBlogImg = $arquivos['name'][$i];
     $temp = $arquivos['tmp_name'][$i];
     $tipo = $arquivos['type'][$i];
@@ -41,22 +27,13 @@ for ($i = 0; $i < count($arquivos['name']); $i++) {
         $destino = $diretorio . "/" . $varBlogImgRandom;
 
         if (move_uploaded_file($temp, $destino)) {
-            mysqli_query($conexao, "INSERT INTO blogimg(blogimg_nome, blogimg_nomerandom, fk_codigo_img) VALUES ('$varBlogImg', '$varBlogImgRandom', '$id_noticiaInfo_last')");
-            $id_imgTable_last = mysqli_insert_id($conexao);
+            mysqli_query($conexao, "UPDATE blogimg SET blogimg_nome = '$varBlogImg', blogimg_nomerandom = '$varBlogImgRandom' where fk_codigo_img = '$codigoImg'");
+            die("<script> alert('Blog atualizado!'); window.location='../views/painel.php'; </script>");
         }
     }
 	else{
-		die("<script> alert('Aceita apenas PNG.'); window.location='../views/painel.php'; </script>");
+		die("<script> alert('Blog atualizado!'); window.location='../views/painel.php'; </script>");
 	}
 }
-if(mysqli_query($conexao, "INSERT INTO blog (blog_bloginfo_codigo, blog_blogimg_codigo, blog_usuario_codigo) VALUES ('$id_noticiaInfo_last', '$id_imgTable_last', '$PostagemUsuarioCodigo')")){
-	die("<script> alert('Blog criado com sucesso!'); window.location='../views/painel.php'; </script>");
-}
-else{
-	die("<script> alert('Falha ao criar o blog.'); window.location='../views/painel.php'; </script>");
-}
-mysqli_close($conexao);
-header("location:painel.php");
-?>
-*/
+header("location:../views/painel.php");
 ?>
