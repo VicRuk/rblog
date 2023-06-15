@@ -1,7 +1,7 @@
 <?php
 include("../models/conexao.php");
 include("blades/header2.php");
-$idb = $_GET["ida"];
+$idb = $_GET["idb"];
 $query = mysqli_query($conexao, "SELECT * FROM blog INNER JOIN bloginfo ON blog_bloginfo_codigo = bloginfo_codigo INNER JOIN blogimg ON blog_blogimg_codigo = blogimg_codigo WHERE blog_codigo = $idb ORDER BY blog_codigo DESC");
 ?>
 

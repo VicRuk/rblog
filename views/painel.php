@@ -49,8 +49,8 @@ include("blades/header2.php");
             <td class="d-flex justify-content-center"><img src="../files/imgs/blog/<?php echo $exibe[10] ?>" width="200"></td>
             <td width="200" height="200"><?php echo $exibe[5] ?></td>
             <td><a href="../page.php?idb=<?php echo $exibe[0]?>"><?php echo substr($exibe[6],0,50)."..." ?></a></td>
-            <td><a class="btn btn-primary d-flex justify-content-center" href="editarBlog.php?ida=<?php echo $exibe[0]?>">Editar</a></td>
-            <td><a class="btn btn-danger d-flex justify-content-center" href="../controllers/deletarBlog.php?idb=<?php echo $exibe[0]?>&amp;imagemNome=<?php echo $exibe[10] ?>&amp;noticiaInfoCodigo=<?php echo $exibe[2] ?>">Excluir</a></td>
+            <td><a class="btn btn-primary d-flex justify-content-center" href="editarBlog.php?idb=<?php echo $exibe[0]?>">Editar</a></td>
+            <td><a class="btn btn-danger d-flex justify-content-center" href="../controllers/deletarBlog.php?idb=<?php echo $exibe[0]?>&amp;imagemNome=<?php echo $exibe[10] ?>&amp;noticiaInfoCodigo=<?php echo $exibe[1] ?>">Excluir</a></td>
         </tr>
         <?php } ?>
     </table>

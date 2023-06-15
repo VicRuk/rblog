@@ -12,8 +12,8 @@ include("../views/blades/header2.php");
                 <div class="card-body">
                     <form action="../controllers/login.php" method="POST">
                         <div class="mb-3">
-                            <label>Usuario</label>
-                            <input type="text" name="usuario" class="form-control">
+                            <label>Email</label>
+                            <input type="text" name="email" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label>Senha</label>
