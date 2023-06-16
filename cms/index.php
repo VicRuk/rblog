@@ -2,28 +2,31 @@
 include("../models/conexao.php");
 include("../views/blades/header2.php");
 ?>
-<div class="container p-5 mt-5 mb-5 rounded bg-white justify-content-center" id="login">
-    <div class="row">
-        <div class="col-lg-10 offset-lg-1">
-            <div class="card">
+<div class="container p-5 mt-5 mb-5 rounded bg-white" id="login">
+    <div class="row d-flex justify-content-center">
+        <div class="col-10">
+            <div class="card mb-3">
                 <div class="card-body">
-                    <h3>Login</h3>
+                    <h3 class="fw-bold">Login</h3>
                 </div>
                 <div class="card-body">
                     <form action="../controllers/login.php" method="POST">
                         <div class="mb-3">
-                            <label>Email</label>
+                            <label class="fw-bold">Email</label>
                             <input type="text" name="email" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label>Senha</label>
+                            <label class="fw-bold">Senha</label>
                             <input type="password" name="senha" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Confirmar</button></button>
+                            <button type="submit" class="btn btn-primary fw-bold" >Entrar</button>
                         </div>
                     </form>
                 </div>
+            </div>
+            <div>
+                <a class="fw-bold" href="novoUsuario.php">Novo Usuário</a>
             </div>
         </div>
     </div>

@@ -5,17 +5,25 @@ include("../models/conexao.php");
 $BlogInfoCodigo = $_POST["infoCodigo"];
 $BlogTitulo = $_POST["tituloBlog"];
 $BlogCorpo = $_POST["sobreBlog"];
-
+$fk_codigo_img = $_POST["fk_codigoImagem"];
 $diretorio = "../files/imgs/blog";
+
 $arquivos = isset($_FILES['arquivo']) ? $_FILES['arquivo'] : FALSE;
 
 mysqli_query($conexao, "UPDATE bloginfo SET bloginfo_titulo = '$BlogTitulo', bloginfo_corpo = '$BlogCorpo' WHERE bloginfo_codigo = '$BlogInfoCodigo'");
-$id_noticiaInfo_last = mysqli_insert_id($conexao);
 
-echo count($arquivos['name']);
+$query = mysqli_query($conexao, "SELECT * FROM blogimg WHERE fk_codigo_img = $fk_codigo_img");
+$codigosImg = array();
+while ($exibe = mysqli_fetch_array($query)) {
+    $nomeArquivoAntigo = $exibe[2];
+    $codigosImg[] = $exibe[0];
+}
 
+if (!empty($nomeArquivoAntigo) && file_exists($diretorio . "/" . $nomeArquivoAntigo)) {
+    unlink($diretorio . "/" . $nomeArquivoAntigo);
+}
+    
 for ($i = 0; $i < count($arquivos['name']); $i++) {
-    $codigoImg = $_POST["codigoImagem"];
     $varBlogImg = $arquivos['name'][$i];
     $temp = $arquivos['tmp_name'][$i];
     $tipo = $arquivos['type'][$i];
@@ -27,13 +35,14 @@ for ($i = 0; $i < count($arquivos['name']); $i++) {
         $destino = $diretorio . "/" . $varBlogImgRandom;
 
         if (move_uploaded_file($temp, $destino)) {
-            mysqli_query($conexao, "UPDATE blogimg SET blogimg_nome = '$varBlogImg', blogimg_nomerandom = '$varBlogImgRandom' where fk_codigo_img = '$codigoImg'");
-            die("<script> alert('Blog atualizado!'); window.location='../views/painel.php'; </script>");
+            $codigoImg = $codigosImg[$i];
+            mysqli_query($conexao, "UPDATE blogimg SET blogimg_nome = '$varBlogImg', blogimg_nomerandom = '$varBlogImgRandom' WHERE blogimg_codigo = '$codigoImg'");
         }
     }
-	else{
-		die("<script> alert('Blog atualizado!'); window.location='../views/painel.php'; </script>");
-	}
+    else{
+        die("<script> alert('Blog criado com sucesso!'); window.location='../views/painel.php'; </script>");
+    }
 }
+
 header("location:../views/painel.php");
 ?>

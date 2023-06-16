@@ -11,7 +11,7 @@ $query = mysqli_query($conexao, "SELECT * FROM blog INNER JOIN bloginfo ON blog_
     ?>
     <form name="atualizar" enctype="multipart/form-data" action="../controllers/atualizarBlog.php" method="post">
         <input type="hidden" name="infoCodigo" value="<?php echo $exibe[1] ?>">
-        <input type="hidden" name="codigoImagem" value="<?php echo $exibe[11] ?>">
+        <input type="hidden" name="fk_codigoImagem" value="<?php echo $exibe[11] ?>">
 
         <label class="form-label">Título</label><br>
         <input class="form-control" type="text" name="tituloBlog" value="<?php echo $exibe[5]?>"><br>

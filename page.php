@@ -5,15 +5,27 @@ $idb = $_GET["idb"];
 ?>
     <div class="container border rounded mt-5 mb-5 pt-3 ps-3 pb-3 pe-3 bg-white" id="blog">
         <?php
-        $query = mysqli_query($conexao, "SELECT * FROM blog INNER JOIN bloginfo ON blog_bloginfo_codigo = bloginfo_codigo INNER JOIN blogimg ON blog_blogimg_codigo = blogimg_codigo WHERE blog_codigo = $idb ORDER BY blog_codigo DESC");
+        $query = mysqli_query($conexao, "SELECT * FROM blog INNER JOIN bloginfo ON blog_bloginfo_codigo = bloginfo_codigo INNER JOIN blogimg ON blog_blogimg_codigo = blogimg_codigo INNER JOIN usuario ON blog_usuario_codigo = usuario_codigo WHERE blog_codigo = $idb ORDER BY blog_codigo DESC");
         while($exibe = mysqli_fetch_array($query)){
+        $Data = new DateTime($exibe[7]);
+        $stringDate = $Data -> format('d/m/Y, H:i:s');
         ?>
-        <h1 class='fw-semibold mb-4'><?php echo $exibe[5] ?></h1>
+        
+        <h1 class='fw-semibold mb-4'><?php echo $exibe[5]?></h1>
+        <p class="font-weight-light">Criado por <?php echo $exibe[13]?></p>
+        <p class="text-muted"><?php echo $stringDate?></p>
         <hr class='my-4'>
         <div class='col-12'>
-            <div class='d-flex justify-content-center align-items-center'>
-                <img src="files/imgs/blog/<?php echo $exibe[10] ?>" class="img-fluid mb-5 col-5">
-            </div>
+            <?php
+                $query2 = mysqli_query($conexao, "SELECT * FROM blogimg WHERE fk_codigo_img = $exibe[0] ORDER BY blogimg_codigo DESC");
+                while($exibe2 = mysqli_fetch_array($query2)) {
+            ?>
+                <div class='d-flex justify-content-center align-items-center'>
+                    <img src="files/imgs/blog/<?php echo $exibe2[2] ?>" class="img-fluid col-4 mb-5 ">
+                </div>
+            <?php
+                }
+            ?>
             <div class='mb-5'>
                 <?php echo "<p> $exibe[6]</p>"?>
             </div>

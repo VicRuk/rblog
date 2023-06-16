@@ -2,7 +2,10 @@ html, body{
     font-family: 'Montserrat', sans-serif;
 }
 p{
-    font-size: 0.9rem;
+    font-size: 1rem;
+}
+#home{
+    min-height: 80vh;
 }
 #blog{
     min-height: 90vh;
@@ -11,9 +14,11 @@ p{
     min-height: 70vh;
 }
 
-
+tr td{
+    table-layout:fixed;
+    white-space: pre-wrap;
+}
 #footer{
-    position: relative;
     background-color: #000;  
     bottom: 0;
 }
