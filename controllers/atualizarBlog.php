@@ -11,7 +11,6 @@ $diretorio = "../files/imgs/blog";
 $arquivos = isset($_FILES['arquivo']) ? $_FILES['arquivo'] : FALSE;
 
 mysqli_query($conexao, "UPDATE bloginfo SET bloginfo_titulo = '$BlogTitulo', bloginfo_corpo = '$BlogCorpo' WHERE bloginfo_codigo = '$BlogInfoCodigo'");
-
 $query = mysqli_query($conexao, "SELECT * FROM blogimg WHERE fk_codigo_img = $fk_codigo_img");
 $codigosImg = array();
 while ($exibe = mysqli_fetch_array($query)) {

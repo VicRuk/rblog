@@ -39,5 +39,5 @@ else{
 	die("<script> alert('Falha ao criar o blog.'); window.location='../views/painel.php'; </script>");
 }
 mysqli_close($conexao);
-header("location:painel.php");
+header("location:../views/painel.php");
 ?>

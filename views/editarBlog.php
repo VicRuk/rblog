@@ -13,16 +13,20 @@ $query = mysqli_query($conexao, "SELECT * FROM blog INNER JOIN bloginfo ON blog_
         <input type="hidden" name="infoCodigo" value="<?php echo $exibe[1] ?>">
         <input type="hidden" name="fk_codigoImagem" value="<?php echo $exibe[11] ?>">
 
-        <label class="form-label">Título</label><br>
+        <label class="form-label fw-semibold">Título</label><br>
         <input class="form-control" type="text" name="tituloBlog" value="<?php echo $exibe[5]?>"><br>
 
-        <label class="form-label">Sobre</label><br>
+        <label class="form-label fw-semibold">Sobre</label><br>
         <textarea class="form-control" rows="5" type="text" name="sobreBlog"><?php echo $exibe[6]?></textarea><br>
         
         <input type="hidden" name="MAX_FILE_SIZE" value="99999999">
-        <input type="file" name="arquivo[]" multiple="multiple" /><br><br>
+        <div class="row">
+            <div class="col-sm-12">
+                <input class="fw-bold form-control custom-file-input" type="file" name="arquivo[]" multiple="multiple" /><br><br>
+            </div>
+        </div>
 
-        <input class="btn btn-success" type="submit" value="Atualizar">
+        <input class="fw-bold btn btn-success" type="submit" value="Atualizar">
     </form>
     <?php } ?>
 </div>

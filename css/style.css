@@ -1,8 +1,14 @@
 html, body{
     font-family: 'Montserrat', sans-serif;
 }
+h1{
+    word-wrap: break-word; 
+    max-width: 100%;
+}
 p{
     font-size: 1rem;
+    word-wrap: break-word; 
+    max-width: 100%;
 }
 #home{
     min-height: 80vh;
@@ -10,14 +16,25 @@ p{
 #blog{
     min-height: 90vh;
 }
+#painel{
+    min-height: 50vh;
+}
 #login{
     min-height: 70vh;
 }
-
-tr td{
-    table-layout:fixed;
-    white-space: pre-wrap;
+td{
+    overflow-wrap: break-word; 
+    word-wrap: break-word; 
+    -ms-word-break: break-all; 
+    word-break: break-word; 
+    max-width: 100%;
 }
+
+.custom-file-label {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+  }
 #footer{
     background-color: #000;  
     bottom: 0;

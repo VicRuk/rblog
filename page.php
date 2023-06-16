@@ -10,24 +10,25 @@ $idb = $_GET["idb"];
         $Data = new DateTime($exibe[7]);
         $stringDate = $Data -> format('d/m/Y, H:i:s');
         ?>
-        
-        <h1 class='fw-semibold mb-4'><?php echo $exibe[5]?></h1>
-        <p class="font-weight-light">Criado por <?php echo $exibe[13]?></p>
-        <p class="text-muted"><?php echo $stringDate?></p>
-        <hr class='my-4'>
-        <div class='col-12'>
-            <?php
-                $query2 = mysqli_query($conexao, "SELECT * FROM blogimg WHERE fk_codigo_img = $exibe[0] ORDER BY blogimg_codigo DESC");
-                while($exibe2 = mysqli_fetch_array($query2)) {
-            ?>
-                <div class='d-flex justify-content-center align-items-center'>
-                    <img src="files/imgs/blog/<?php echo $exibe2[2] ?>" class="img-fluid col-4 mb-5 ">
+        <div class="position-relative container-fluid col-12">
+            <h1 class='fw-bold mb-3'><?php echo $exibe[5]?></h1>
+            <p class="font-weight-light">Criado por <?php echo $exibe[13]?></p>
+            <p class="text-muted"><?php echo $stringDate?></p>
+            <hr class='my-4'>
+            <div class='col-12'>
+                <?php
+                    $query2 = mysqli_query($conexao, "SELECT * FROM blogimg WHERE fk_codigo_img = $exibe[0] ORDER BY blogimg_codigo DESC");
+                    while($exibe2 = mysqli_fetch_array($query2)) {
+                ?>
+                    <div class='d-flex justify-content-center align-items-center'>
+                        <img src="files/imgs/blog/<?php echo $exibe2[2] ?>" class="img-fluid col-4 mb-5 ">
+                    </div>
+                <?php
+                    }
+                ?>
+                <div class='col-12 mb-5'>
+                    <p><?php echo $exibe[6]?></p>
                 </div>
-            <?php
-                }
-            ?>
-            <div class='mb-5'>
-                <?php echo "<p> $exibe[6]</p>"?>
             </div>
         </div>
         <?php } ?>
