@@ -2,8 +2,8 @@
 echo "<html lang='pt-br'>";
 include("../models/conexao.php");
 
-$varBlogTitulo = $_POST["tituloBlog"];
-$varBlogCorpo = $_POST["sobreBlog"];
+$varBlogTitulo = mysqli_real_escape_string($conexao, $_POST["tituloBlog"]);
+$varBlogCorpo = mysqli_real_escape_string($conexao, $_POST["sobreBlog"]);
 $PostagemUsuarioCodigo = $_POST["usuarioCodigo"];
 $diretorio = "../files/imgs/blog";
 

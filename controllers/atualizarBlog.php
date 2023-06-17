@@ -3,8 +3,8 @@ echo "<html lang='pt-br'>";
 include("../models/conexao.php");
 
 $BlogInfoCodigo = $_POST["infoCodigo"];
-$BlogTitulo = $_POST["tituloBlog"];
-$BlogCorpo = $_POST["sobreBlog"];
+$BlogTitulo = mysqli_real_escape_string($conexao, $_POST["tituloBlog"]);
+$BlogCorpo = mysqli_real_escape_string($conexao, $_POST["sobreBlog"]);
 $fk_codigo_img = $_POST["fk_codigoImagem"];
 $diretorio = "../files/imgs/blog";
 
