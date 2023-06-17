@@ -19,6 +19,19 @@ $query = mysqli_query($conexao, "SELECT * FROM blog INNER JOIN bloginfo ON blog_
         <label class="form-label fw-semibold">Sobre</label><br>
         <textarea class="form-control" rows="5" type="text" name="sobreBlog" required><?php echo $exibe[6]?></textarea><br>
         
+        <label class="form-label fw-semibold">Imagens Atuais:</label><br>
+        <div class='col-12'>
+            <div class='d-flex'>
+                <?php
+                    $query2 = mysqli_query($conexao, "SELECT * FROM blogimg WHERE fk_codigo_img = $exibe[0] ORDER BY blogimg_codigo DESC");
+                    while($exibe2 = mysqli_fetch_array($query2)) {
+                ?>    
+                    <img src="../files/imgs/blog/<?php echo $exibe2[2]?>" class="img-fluid col-2 mb-4 ms-2">      
+                <?php
+                }
+                ?>
+            </div>
+        </div>
         <input type="hidden" name="MAX_FILE_SIZE" value="99999999">
         <div class="row">
             <div class="col-sm-12">
