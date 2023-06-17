@@ -1,6 +1,6 @@
 <?php
 include("models/conexao.php");
-include("views/blades/header.php");
+include("views/blades/header4.php");
 $idb = $_GET["idb"];
 ?>
     <div class="container border rounded mt-5 mb-5 pt-3 ps-3 pb-3 pe-3 bg-white" id="blog">
@@ -21,7 +21,7 @@ $idb = $_GET["idb"];
                     while($exibe2 = mysqli_fetch_array($query2)) {
                 ?>
                     <div class='d-flex justify-content-center align-items-center'>
-                        <img src="files/imgs/blog/<?php echo $exibe2[2] ?>" class="img-fluid col-4 mb-5 ">
+                        <img src="files/imgs/blog/<?php echo $exibe2[2]?>" class="img-fluid col-4 mb-4">
                     </div>
                 <?php
                     }

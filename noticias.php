@@ -3,7 +3,7 @@ include("models/conexao.php");
 include("views/blades/header3.php");
 ?>
 <div class="container border rounded mb-5 mt-5 pt-3 ps-3 pb-3 pe-3 bg-white" id="blog">
-    <h1 class="fw-bold mb-5">Todas as notícias</h1>
+    <h1 class="fw-bold mb-4">Todas as notícias</h1>
 
     <form action="noticias.php" method="post">
         <input class="form-control" type="text" name="buscar" placeholder="Digite a busca">

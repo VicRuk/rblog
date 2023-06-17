@@ -18,28 +18,35 @@ while ($exibe = mysqli_fetch_array($query)) {
     $codigosImg[] = $exibe[0];
 }
 
-if (!empty($nomeArquivoAntigo) && file_exists($diretorio . "/" . $nomeArquivoAntigo)) {
-    unlink($diretorio . "/" . $nomeArquivoAntigo);
-}
-    
-for ($i = 0; $i < count($arquivos['name']); $i++) {
-    $varBlogImg = $arquivos['name'][$i];
-    $temp = $arquivos['tmp_name'][$i];
-    $tipo = $arquivos['type'][$i];
-    $erro = $arquivos['error'][$i];
-    $extensao = pathinfo($varBlogImg, PATHINFO_EXTENSION);
+if ($arquivos !== FALSE && !empty($arquivos['name'][0])) {
+    foreach ($codigosImg as $codigoImg) {
+        $queryImgAntiga = mysqli_query($conexao, "SELECT * FROM blogimg WHERE blogimg_codigo = $codigoImg");
+        $exibeImgAntiga = mysqli_fetch_array($queryImgAntiga);
+        $nomeArquivoAntigo = $exibeImgAntiga['blogimg_nomerandom'];
 
-    if ($extensao == 'png') {
-        $varBlogImgRandom = md5(uniqid()) . "." . $extensao;
-        $destino = $diretorio . "/" . $varBlogImgRandom;
-
-        if (move_uploaded_file($temp, $destino)) {
-            $codigoImg = $codigosImg[$i];
-            mysqli_query($conexao, "UPDATE blogimg SET blogimg_nome = '$varBlogImg', blogimg_nomerandom = '$varBlogImgRandom' WHERE blogimg_codigo = '$codigoImg'");
+        if (!empty($nomeArquivoAntigo) && file_exists($diretorio . "/" . $nomeArquivoAntigo)) {
+            unlink($diretorio . "/" . $nomeArquivoAntigo);
         }
     }
-    else{
-        die("<script> alert('Blog criado com sucesso!'); window.location='../views/painel.php'; </script>");
+
+    for ($i = 0; $i < count($arquivos['name']); $i++) {
+        $varBlogImg = $arquivos['name'][$i];
+        $temp = $arquivos['tmp_name'][$i];
+        $tipo = $arquivos['type'][$i];
+        $erro = $arquivos['error'][$i];
+        $extensao = pathinfo($varBlogImg, PATHINFO_EXTENSION);
+
+        if ($extensao == 'png') {
+            $varBlogImgRandom = md5(uniqid()) . "." . $extensao;
+            $destino = $diretorio . "/" . $varBlogImgRandom;
+
+            if (move_uploaded_file($temp, $destino)) {
+                $codigoImg = $codigosImg[$i];
+                mysqli_query($conexao, "UPDATE blogimg SET blogimg_nome = '$varBlogImg', blogimg_nomerandom = '$varBlogImgRandom' WHERE blogimg_codigo = '$codigoImg'");
+            }
+        } else {
+            die("<script> alert('Blog criado com sucesso!'); window.location='../views/painel.php'; </script>");
+        }
     }
 }
 

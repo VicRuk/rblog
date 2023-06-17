@@ -18,15 +18,15 @@ include("blades/header2.php");
         <input type="hidden" name="usuarioCodigo" value="<?php echo $_SESSION["usuarioCodigo"]?>">
 
         <label class="form-label fw-semibold">Título</label><br>
-        <input class="form-control" type="text" name="tituloBlog"><br>
+        <input class="form-control" type="text" name="tituloBlog" required><br>
 
         <label class="form-label fw-semibold">Sobre</label><br>
-        <textarea class="form-control" rows="5" type="text" name="sobreBlog"></textarea><br>
+        <textarea class="form-control" rows="5" type="text" name="sobreBlog" required></textarea><br>
         
         <input type="hidden" name="MAX_FILE_SIZE" value="99999999">
         <div class="row">
             <div class="col-sm-12">
-                <input class="fw-bold form-control custom-file-input" type="file" name="arquivo[]" multiple="multiple" /><br><br>
+                <input class="fw-bold form-control custom-file-input" type="file" name="arquivo[]" multiple="multiple" /><br>
             </div>
         </div>
 
