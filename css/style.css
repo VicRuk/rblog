@@ -1,9 +1,12 @@
 html, body{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Karla', sans-serif;
 }
 h1{
     word-wrap: break-word; 
     max-width: 100%;
+}
+h6{
+    font-size: 20px;
 }
 p{
     font-size: 1rem;
@@ -36,7 +39,7 @@ p{
     font-size: 14px;
 }
 #home{
-    min-height: 75vh;
+    min-height: 80vh;
 }
 #blog{
     min-height: 90vh;
@@ -61,8 +64,47 @@ td{
     padding: 0;
   }
 #footer{
-    background-color: #000;  
+    background-color: #EFEFEF;
     bottom: 0;
+}
+#footer{
+    background-color: #EFEFEF;
+}
+#items-footer{
+    font-family: 'Inter', sans-serif;
+    color: black;
+    font-size: 15px;
+}
+#redes2{
+    margin: 10px 0;
+    flex-wrap: wrap;
+    padding-inline-start: 0px !important;
+}
+#redes2 li a{
+    width: 1.6em;
+    height: 1.6em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    color: #000;
+    margin: 0 5px;
+    transition: 0.5s;
+    border-radius: 50%;
+    border: 2px solid black
+}
+#redes2 li{
+    list-style: none;
+}
+#redes2 li a:hover{
+    transform: translateY(-10px);
+}
+#redes2 li{
+    list-style: none;
+}
+#copyright{
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
 }
 #redes{
     margin: 10px 0;
